@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block title %}Repairs - FixTrack{% endblock %}
+
+{% block content %}
+
+<h2>Repairs</h2>
+
+{% if repairs %}
+
+<ul>
+    {% for repair in repairs %}
+        <li>
+            {{ repair.customer }}
+            —
+            {{ repair.item }}
+            —
+            {{ repair.status }}
+        </li>
+    {% endfor %}
+</ul>
+
+{% else %}
+
+<p>No repairs yet.</p>
+
+{% endif %}
+
+{% endblock %}
