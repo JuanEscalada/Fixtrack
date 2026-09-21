@@ -32,7 +32,11 @@ def new_repair():
 
         return redirect(url_for("main.index"))
 
-    return render_template("repair_form.html")
+    return render_template(
+        "repair_form.html",
+        repair=None,
+    )
+
 
 @main.route("/repairs/<int:repair_id>")
 def repair_detail(repair_id):
@@ -40,5 +44,27 @@ def repair_detail(repair_id):
 
     return render_template(
         "repair_detail.html",
+        repair=repair,
+    )
+
+
+@main.route("/repairs/<int:repair_id>/edit", methods=["GET", "POST"])
+def edit_repair(repair_id):
+    repair = Repair.query.get_or_404(repair_id)
+
+    if request.method == "POST":
+        repair.customer = request.form["customer"]
+        repair.item = request.form["item"]
+        repair.problem = request.form["problem"]
+        repair.status = request.form["status"]
+
+        db.session.commit()
+
+        return redirect(
+            url_for("main.repair_detail", repair_id=repair.id)
+        )
+
+    return render_template(
+        "repair_form.html",
         repair=repair,
     )

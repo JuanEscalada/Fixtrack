@@ -1,10 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}New Repair - FixTrack{% endblock %}
-
 {% block content %}
 
-<h2>New Repair</h2>
+<h2>
+    {% if repair %}
+        Edit Repair
+    {% else %}
+        New Repair
+    {% endif %}
+</h2>
 
 <form method="post">
 
@@ -14,6 +18,7 @@
             type="text"
             id="customer"
             name="customer"
+            value="{{ repair.customer if repair else '' }}"
             required
         >
     </div>
@@ -26,6 +31,7 @@
             type="text"
             id="item"
             name="item"
+            value="{{ repair.item if repair else '' }}"
             required
         >
     </div>
@@ -38,13 +44,31 @@
             id="problem"
             name="problem"
             required
-        ></textarea>
+        >{{ repair.problem if repair else '' }}</textarea>
     </div>
 
     <br>
 
+    {% if repair %}
+        <div>
+            <label for="status">Status</label>
+
+            <select id="status" name="status">
+                <option value="Received">Received</option>
+                <option value="Diagnosing">Diagnosing</option>
+                <option value="Waiting for parts">Waiting for parts</option>
+                <option value="In progress">In progress</option>
+                <option value="Ready">Ready</option>
+                <option value="Delivered">Delivered</option>
+                <option value="Cancelled">Cancelled</option>
+            </select>
+        </div>
+
+        <br>
+    {% endif %}
+
     <button type="submit">
-        Create Repair
+        Save
     </button>
 
 </form>
