@@ -1,0 +1,44 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>{{ repair.item }}</h2>
+
+<p>
+    <strong>Customer:</strong>
+    {{ repair.customer }}
+</p>
+
+<p>
+    <strong>Problem:</strong>
+    {{ repair.problem }}
+</p>
+
+<p>
+    <strong>Status:</strong>
+    {{ repair.status }}
+</p>
+
+<p>
+    <strong>Estimated price:</strong>
+    {{ repair.estimated_price }}
+</p>
+
+<p>
+    <strong>Final price:</strong>
+    {{ repair.final_price }}
+</p>
+
+<p>
+    <strong>Notes:</strong>
+    {{ repair.notes }}
+</p>
+
+<p>
+    <a href="{{ url_for('main.index') }}">
+        Back to repairs
+    </a>
+</p>
+
+{% endblock %}

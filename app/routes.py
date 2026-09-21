@@ -33,3 +33,12 @@ def new_repair():
         return redirect(url_for("main.index"))
 
     return render_template("repair_form.html")
+
+@main.route("/repairs/<int:repair_id>")
+def repair_detail(repair_id):
+    repair = Repair.query.get_or_404(repair_id)
+
+    return render_template(
+        "repair_detail.html",
+        repair=repair,
+    )

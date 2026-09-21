@@ -13,11 +13,10 @@
 <ul>
     {% for repair in repairs %}
         <li>
-            {{ repair.customer }}
-            —
-            {{ repair.item }}
-            —
-            {{ repair.status }}
+            <a href="{{ url_for('main.repair_detail', repair_id=repair.id) }}">
+                {{ repair.customer }} — {{ repair.item }}
+            </a>
+            — {{ repair.status }}
         </li>
     {% endfor %}
 </ul>
