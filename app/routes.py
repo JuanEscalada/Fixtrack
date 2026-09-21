@@ -1,5 +1,6 @@
-from flask import Blueprint, render_template
+from flask import Blueprint, redirect, render_template, request, url_for
 
+from app import db
 from app.models import Repair
 
 
@@ -14,3 +15,21 @@ def index():
         "repairs.html",
         repairs=repairs,
     )
+
+
+@main.route("/repairs/new", methods=["GET", "POST"])
+def new_repair():
+    if request.method == "POST":
+        repair = Repair(
+            customer=request.form["customer"],
+            item=request.form["item"],
+            problem=request.form["problem"],
+            status="Received",
+        )
+
+        db.session.add(repair)
+        db.session.commit()
+
+        return redirect(url_for("main.index"))
+
+    return render_template("repair_form.html")

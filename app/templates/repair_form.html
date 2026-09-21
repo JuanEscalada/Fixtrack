@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block title %}New Repair - FixTrack{% endblock %}
+
+{% block content %}
+
+<h2>New Repair</h2>
+
+<form method="post">
+
+    <div>
+        <label for="customer">Customer</label>
+        <input
+            type="text"
+            id="customer"
+            name="customer"
+            required
+        >
+    </div>
+
+    <br>
+
+    <div>
+        <label for="item">Item</label>
+        <input
+            type="text"
+            id="item"
+            name="item"
+            required
+        >
+    </div>
+
+    <br>
+
+    <div>
+        <label for="problem">Problem</label>
+        <textarea
+            id="problem"
+            name="problem"
+            required
+        ></textarea>
+    </div>
+
+    <br>
+
+    <button type="submit">
+        Create Repair
+    </button>
+
+</form>
+
+<p>
+    <a href="{{ url_for('main.index') }}">
+        Back to repairs
+    </a>
+</p>
+
+{% endblock %}

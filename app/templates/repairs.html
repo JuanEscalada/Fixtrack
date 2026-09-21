@@ -1,12 +1,14 @@
 {% extends "base.html" %}
 
-{% block title %}Repairs - FixTrack{% endblock %}
-
 {% block content %}
 
 <h2>Repairs</h2>
 
-{% if repairs %}
+<p>
+    <a href="{{ url_for('main.new_repair') }}">
+        New Repair
+    </a>
+</p>
 
 <ul>
     {% for repair in repairs %}
@@ -19,11 +21,5 @@
         </li>
     {% endfor %}
 </ul>
-
-{% else %}
-
-<p>No repairs yet.</p>
-
-{% endif %}
 
 {% endblock %}
