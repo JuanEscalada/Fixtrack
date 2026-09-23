@@ -81,7 +81,6 @@ More technical improvements could be:
 
 * PostgreSQL support
 * REST API
-* Automated tests
 * Docker support
 * Deployment
 
