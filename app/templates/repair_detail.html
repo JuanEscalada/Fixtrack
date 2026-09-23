@@ -47,4 +47,13 @@
     </a>
 </p>
 
+<form
+    method="post"
+    action="{{ url_for('main.delete_repair', repair_id=repair.id) }}"
+>
+    <button type="submit">
+        Delete
+    </button>
+</form>
+
 {% endblock %}

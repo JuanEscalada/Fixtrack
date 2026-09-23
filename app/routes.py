@@ -68,3 +68,12 @@ def edit_repair(repair_id):
         "repair_form.html",
         repair=repair,
     )
+
+@main.route("/repairs/<int:repair_id>/delete", methods=["POST"])
+def delete_repair(repair_id):
+    repair = Repair.query.get_or_404(repair_id)
+
+    db.session.delete(repair)
+    db.session.commit()
+
+    return redirect(url_for("main.index"))
