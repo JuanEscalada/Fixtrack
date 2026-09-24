@@ -54,13 +54,54 @@
             <label for="status">Status</label>
 
             <select id="status" name="status">
-                <option value="Received">Received</option>
-                <option value="Diagnosing">Diagnosing</option>
-                <option value="Waiting for parts">Waiting for parts</option>
-                <option value="In progress">In progress</option>
-                <option value="Ready">Ready</option>
-                <option value="Delivered">Delivered</option>
-                <option value="Cancelled">Cancelled</option>
+                <option
+                    value="Received"
+                    {% if repair.status == "Received" %}selected{% endif %}
+                >
+                    Received
+                </option>
+
+                <option
+                    value="Diagnosing"
+                    {% if repair.status == "Diagnosing" %}selected{% endif %}
+                >
+                    Diagnosing
+                </option>
+
+                <option
+                    value="Waiting for parts"
+                    {% if repair.status == "Waiting for parts" %}selected{% endif %}
+                >
+                    Waiting for parts
+                </option>
+
+                <option
+                    value="In progress"
+                    {% if repair.status == "In progress" %}selected{% endif %}
+                >
+                    In progress
+                </option>
+
+                <option
+                    value="Ready"
+                    {% if repair.status == "Ready" %}selected{% endif %}
+                >
+                    Ready
+                </option>
+
+                <option
+                    value="Delivered"
+                    {% if repair.status == "Delivered" %}selected{% endif %}
+                >
+                    Delivered
+                </option>
+
+                <option
+                    value="Cancelled"
+                    {% if repair.status == "Cancelled" %}selected{% endif %}
+                >
+                    Cancelled
+                </option>
             </select>
         </div>
 
