@@ -9,11 +9,19 @@ main = Blueprint("main", __name__)
 
 @main.route("/")
 def index():
-    repairs = Repair.query.order_by(Repair.created_at.desc()).all()
+    status = request.args.get("status")
+
+    query = Repair.query
+
+    if status:
+        query = query.filter_by(status=status)
+
+    repairs = query.order_by(Repair.created_at.desc()).all()
 
     return render_template(
         "repairs.html",
         repairs=repairs,
+        selected_status=status,
     )
 
 

@@ -10,6 +10,25 @@
     </a>
 </p>
 
+<form method="get">
+    <label for="status">Filter by status</label>
+
+    <select id="status" name="status">
+        <option value="">All</option>
+        <option value="Received">Received</option>
+        <option value="Diagnosing">Diagnosing</option>
+        <option value="Waiting for parts">Waiting for parts</option>
+        <option value="In progress">In progress</option>
+        <option value="Ready">Ready</option>
+        <option value="Delivered">Delivered</option>
+        <option value="Cancelled">Cancelled</option>
+    </select>
+
+    <button type="submit">
+        Filter
+    </button>
+</form>
+
 <ul>
     {% for repair in repairs %}
         <li>
