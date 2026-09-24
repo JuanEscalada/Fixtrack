@@ -15,13 +15,55 @@
 
     <select id="status" name="status">
         <option value="">All</option>
-        <option value="Received">Received</option>
-        <option value="Diagnosing">Diagnosing</option>
-        <option value="Waiting for parts">Waiting for parts</option>
-        <option value="In progress">In progress</option>
-        <option value="Ready">Ready</option>
-        <option value="Delivered">Delivered</option>
-        <option value="Cancelled">Cancelled</option>
+
+        <option
+            value="Received"
+            {% if selected_status == "Received" %}selected{% endif %}
+        >
+            Received
+        </option>
+
+        <option
+            value="Diagnosing"
+            {% if selected_status == "Diagnosing" %}selected{% endif %}
+        >
+            Diagnosing
+        </option>
+
+        <option
+            value="Waiting for parts"
+            {% if selected_status == "Waiting for parts" %}selected{% endif %}
+        >
+            Waiting for parts
+        </option>
+
+        <option
+            value="In progress"
+            {% if selected_status == "In progress" %}selected{% endif %}
+        >
+            In progress
+        </option>
+
+        <option
+            value="Ready"
+            {% if selected_status == "Ready" %}selected{% endif %}
+        >
+            Ready
+        </option>
+
+        <option
+            value="Delivered"
+            {% if selected_status == "Delivered" %}selected{% endif %}
+        >
+            Delivered
+        </option>
+
+        <option
+            value="Cancelled"
+            {% if selected_status == "Cancelled" %}selected{% endif %}
+        >
+            Cancelled
+        </option>
     </select>
 
     <button type="submit">
