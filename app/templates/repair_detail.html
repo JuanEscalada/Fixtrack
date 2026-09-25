@@ -1,59 +1,79 @@
-
 {% extends "base.html" %}
 
 {% block content %}
 
-<h2>{{ repair.item }}</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
 
-<p>
-    <strong>Customer:</strong>
-    {{ repair.customer }}
-</p>
+    <div>
+        <h1>{{ repair.item }}</h1>
 
-<p>
-    <strong>Problem:</strong>
-    {{ repair.problem }}
-</p>
+        <span class="badge text-bg-secondary">
+            {{ repair.status }}
+        </span>
+    </div>
 
-<p>
-    <strong>Status:</strong>
-    {{ repair.status }}
-</p>
+    <a
+        href="{{ url_for('main.index') }}"
+        class="btn btn-outline-secondary"
+    >
+        Back
+    </a>
 
-<p>
-    <strong>Estimated price:</strong>
-    {{ repair.estimated_price }}
-</p>
+</div>
 
-<p>
-    <strong>Final price:</strong>
-    {{ repair.final_price }}
-</p>
 
-<p>
-    <strong>Notes:</strong>
-    {{ repair.notes }}
-</p>
+<div class="card mb-4">
+    <div class="card-body">
 
-<p>
-    <a href="{{ url_for('main.edit_repair', repair_id=repair.id) }}">
+        <dl class="row mb-0">
+
+            <dt class="col-sm-3">Customer</dt>
+            <dd class="col-sm-9">{{ repair.customer }}</dd>
+
+            <dt class="col-sm-3">Problem</dt>
+            <dd class="col-sm-9">{{ repair.problem }}</dd>
+
+            <dt class="col-sm-3">Estimated price</dt>
+            <dd class="col-sm-9">{{ repair.estimated_price }}</dd>
+
+            <dt class="col-sm-3">Final price</dt>
+            <dd class="col-sm-9">{{ repair.final_price }}</dd>
+
+            <dt class="col-sm-3">Notes</dt>
+            <dd class="col-sm-9">{{ repair.notes }}</dd>
+
+            <dt class="col-sm-3">Created</dt>
+            <dd class="col-sm-9">
+                {{ repair.created_at.strftime("%Y-%m-%d") }}
+            </dd>
+
+        </dl>
+
+    </div>
+</div>
+
+
+<div class="d-flex gap-2">
+
+    <a
+        href="{{ url_for('main.edit_repair', repair_id=repair.id) }}"
+        class="btn btn-primary"
+    >
         Edit
     </a>
-</p>
 
-<p>
-    <a href="{{ url_for('main.index') }}">
-        Back to repairs
-    </a>
-</p>
+    <form
+        method="post"
+        action="{{ url_for('main.delete_repair', repair_id=repair.id) }}"
+    >
+        <button
+            type="submit"
+            class="btn btn-outline-danger"
+        >
+            Delete
+        </button>
+    </form>
 
-<form
-    method="post"
-    action="{{ url_for('main.delete_repair', repair_id=repair.id) }}"
->
-    <button type="submit">
-        Delete
-    </button>
-</form>
+</div>
 
 {% endblock %}

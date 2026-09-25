@@ -2,122 +2,166 @@
 
 {% block content %}
 
-<h2>
-    {% if repair %}
-        Edit Repair
-    {% else %}
-        New Repair
-    {% endif %}
-</h2>
+<div class="row justify-content-center">
 
-<form method="post">
+    <div class="col-lg-8">
 
-    <div>
-        <label for="customer">Customer</label>
-        <input
-            type="text"
-            id="customer"
-            name="customer"
-            value="{{ repair.customer if repair else '' }}"
-            required
-        >
-    </div>
+        <div class="card">
+            <div class="card-body p-4">
 
-    <br>
+                <h1 class="mb-4">
+                    {% if repair %}
+                        Edit Repair
+                    {% else %}
+                        New Repair
+                    {% endif %}
+                </h1>
 
-    <div>
-        <label for="item">Item</label>
-        <input
-            type="text"
-            id="item"
-            name="item"
-            value="{{ repair.item if repair else '' }}"
-            required
-        >
-    </div>
 
-    <br>
+                <form method="post">
 
-    <div>
-        <label for="problem">Problem</label>
-        <textarea
-            id="problem"
-            name="problem"
-            required
-        >{{ repair.problem if repair else '' }}</textarea>
-    </div>
+                    <div class="mb-3">
+                        <label for="customer" class="form-label">
+                            Customer
+                        </label>
 
-    <br>
+                        <input
+                            type="text"
+                            id="customer"
+                            name="customer"
+                            class="form-control"
+                            value="{{ repair.customer if repair else '' }}"
+                            required
+                        >
+                    </div>
 
-    {% if repair %}
-        <div>
-            <label for="status">Status</label>
 
-            <select id="status" name="status">
-                <option
-                    value="Received"
-                    {% if repair.status == "Received" %}selected{% endif %}
-                >
-                    Received
-                </option>
+                    <div class="mb-3">
+                        <label for="item" class="form-label">
+                            Item
+                        </label>
 
-                <option
-                    value="Diagnosing"
-                    {% if repair.status == "Diagnosing" %}selected{% endif %}
-                >
-                    Diagnosing
-                </option>
+                        <input
+                            type="text"
+                            id="item"
+                            name="item"
+                            class="form-control"
+                            value="{{ repair.item if repair else '' }}"
+                            required
+                        >
+                    </div>
 
-                <option
-                    value="Waiting for parts"
-                    {% if repair.status == "Waiting for parts" %}selected{% endif %}
-                >
-                    Waiting for parts
-                </option>
 
-                <option
-                    value="In progress"
-                    {% if repair.status == "In progress" %}selected{% endif %}
-                >
-                    In progress
-                </option>
+                    <div class="mb-3">
+                        <label for="problem" class="form-label">
+                            Problem
+                        </label>
 
-                <option
-                    value="Ready"
-                    {% if repair.status == "Ready" %}selected{% endif %}
-                >
-                    Ready
-                </option>
+                        <textarea
+                            id="problem"
+                            name="problem"
+                            class="form-control"
+                            rows="4"
+                            required
+                        >{{ repair.problem if repair else '' }}</textarea>
+                    </div>
 
-                <option
-                    value="Delivered"
-                    {% if repair.status == "Delivered" %}selected{% endif %}
-                >
-                    Delivered
-                </option>
 
-                <option
-                    value="Cancelled"
-                    {% if repair.status == "Cancelled" %}selected{% endif %}
-                >
-                    Cancelled
-                </option>
-            </select>
+                    {% if repair %}
+
+                    <div class="mb-3">
+
+                        <label for="status" class="form-label">
+                            Status
+                        </label>
+
+                        <select
+                            id="status"
+                            name="status"
+                            class="form-select"
+                        >
+
+                            <option
+                                value="Received"
+                                {% if repair.status == "Received" %}selected{% endif %}
+                            >
+                                Received
+                            </option>
+
+                            <option
+                                value="Diagnosing"
+                                {% if repair.status == "Diagnosing" %}selected{% endif %}
+                            >
+                                Diagnosing
+                            </option>
+
+                            <option
+                                value="Waiting for parts"
+                                {% if repair.status == "Waiting for parts" %}selected{% endif %}
+                            >
+                                Waiting for parts
+                            </option>
+
+                            <option
+                                value="In progress"
+                                {% if repair.status == "In progress" %}selected{% endif %}
+                            >
+                                In progress
+                            </option>
+
+                            <option
+                                value="Ready"
+                                {% if repair.status == "Ready" %}selected{% endif %}
+                            >
+                                Ready
+                            </option>
+
+                            <option
+                                value="Delivered"
+                                {% if repair.status == "Delivered" %}selected{% endif %}
+                            >
+                                Delivered
+                            </option>
+
+                            <option
+                                value="Cancelled"
+                                {% if repair.status == "Cancelled" %}selected{% endif %}
+                            >
+                                Cancelled
+                            </option>
+
+                        </select>
+
+                    </div>
+
+                    {% endif %}
+
+
+                    <div class="d-flex gap-2 mt-4">
+
+                        <button
+                            type="submit"
+                            class="btn btn-primary"
+                        >
+                            Save
+                        </button>
+
+                        <a
+                            href="{{ url_for('main.index') }}"
+                            class="btn btn-outline-secondary"
+                        >
+                            Cancel
+                        </a>
+
+                    </div>
+
+                </form>
+
+            </div>
         </div>
 
-        <br>
-    {% endif %}
+    </div>
 
-    <button type="submit">
-        Save
-    </button>
-
-</form>
-
-<p>
-    <a href="{{ url_for('main.index') }}">
-        Back to repairs
-    </a>
-</p>
+</div>
 
 {% endblock %}

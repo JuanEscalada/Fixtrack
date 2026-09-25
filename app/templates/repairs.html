@@ -2,84 +2,139 @@
 
 {% block content %}
 
-<h2>Repairs</h2>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h1>Repairs</h1>
 
-<p>
-    <a href="{{ url_for('main.new_repair') }}">
+    <a
+        href="{{ url_for('main.new_repair') }}"
+        class="btn btn-primary"
+    >
         New Repair
     </a>
-</p>
+</div>
 
-<form method="get">
-    <label for="status">Filter by status</label>
 
-    <select id="status" name="status">
-        <option value="">All</option>
+<form method="get" class="row g-2 mb-4">
 
-        <option
-            value="Received"
-            {% if selected_status == "Received" %}selected{% endif %}
+    <div class="col-auto">
+        <select
+            id="status"
+            name="status"
+            class="form-select"
         >
-            Received
-        </option>
+            <option value="">All statuses</option>
 
-        <option
-            value="Diagnosing"
-            {% if selected_status == "Diagnosing" %}selected{% endif %}
-        >
-            Diagnosing
-        </option>
+            <option
+                value="Received"
+                {% if selected_status == "Received" %}selected{% endif %}
+            >
+                Received
+            </option>
 
-        <option
-            value="Waiting for parts"
-            {% if selected_status == "Waiting for parts" %}selected{% endif %}
-        >
-            Waiting for parts
-        </option>
+            <option
+                value="Diagnosing"
+                {% if selected_status == "Diagnosing" %}selected{% endif %}
+            >
+                Diagnosing
+            </option>
 
-        <option
-            value="In progress"
-            {% if selected_status == "In progress" %}selected{% endif %}
-        >
-            In progress
-        </option>
+            <option
+                value="Waiting for parts"
+                {% if selected_status == "Waiting for parts" %}selected{% endif %}
+            >
+                Waiting for parts
+            </option>
 
-        <option
-            value="Ready"
-            {% if selected_status == "Ready" %}selected{% endif %}
-        >
-            Ready
-        </option>
+            <option
+                value="In progress"
+                {% if selected_status == "In progress" %}selected{% endif %}
+            >
+                In progress
+            </option>
 
-        <option
-            value="Delivered"
-            {% if selected_status == "Delivered" %}selected{% endif %}
-        >
-            Delivered
-        </option>
+            <option
+                value="Ready"
+                {% if selected_status == "Ready" %}selected{% endif %}
+            >
+                Ready
+            </option>
 
-        <option
-            value="Cancelled"
-            {% if selected_status == "Cancelled" %}selected{% endif %}
-        >
-            Cancelled
-        </option>
-    </select>
+            <option
+                value="Delivered"
+                {% if selected_status == "Delivered" %}selected{% endif %}
+            >
+                Delivered
+            </option>
 
-    <button type="submit">
-        Filter
-    </button>
+            <option
+                value="Cancelled"
+                {% if selected_status == "Cancelled" %}selected{% endif %}
+            >
+                Cancelled
+            </option>
+        </select>
+    </div>
+
+    <div class="col-auto">
+        <button type="submit" class="btn btn-outline-secondary">
+            Filter
+        </button>
+    </div>
+
 </form>
 
-<ul>
-    {% for repair in repairs %}
-        <li>
-            <a href="{{ url_for('main.repair_detail', repair_id=repair.id) }}">
-                {{ repair.customer }} — {{ repair.item }}
-            </a>
-            — {{ repair.status }}
-        </li>
-    {% endfor %}
-</ul>
+
+<div class="card">
+    <div class="table-responsive">
+
+        <table class="table table-hover align-middle mb-0">
+
+            <thead class="table-light">
+                <tr>
+                    <th>Customer</th>
+                    <th>Item</th>
+                    <th>Status</th>
+                    <th>Created</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+
+                {% for repair in repairs %}
+
+                <tr>
+                    <td>{{ repair.customer }}</td>
+
+                    <td>{{ repair.item }}</td>
+
+                    <td>
+                        <span class="badge text-bg-secondary">
+                            {{ repair.status }}
+                        </span>
+                    </td>
+
+                    <td>
+                        {{ repair.created_at.strftime("%Y-%m-%d") }}
+                    </td>
+
+                    <td class="text-end">
+                        <a
+                            href="{{ url_for('main.repair_detail', repair_id=repair.id) }}"
+                            class="btn btn-sm btn-outline-primary"
+                        >
+                            View
+                        </a>
+                    </td>
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+</div>
 
 {% endblock %}
