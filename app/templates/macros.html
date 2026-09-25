@@ -1,0 +1,17 @@
+{% macro status_badge(status) %}
+
+    {% set colors = {
+        "Received": "text-bg-secondary",
+        "Diagnosing": "text-bg-info",
+        "Waiting for parts": "text-bg-warning",
+        "In progress": "text-bg-primary",
+        "Ready": "text-bg-success",
+        "Delivered": "text-bg-dark",
+        "Cancelled": "text-bg-danger"
+    } %}
+
+    <span class="badge {{ colors.get(status, 'text-bg-secondary') }}">
+        {{ status }}
+    </span>
+
+{% endmacro %}
